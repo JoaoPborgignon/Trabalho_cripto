@@ -1,6 +1,6 @@
 import po23s.http.ClienteHttp;
 
-public class Main {
+public class Po23sCchCripto {
     public static void main(String[] args) {
         ClienteHttp teste = new ClienteHttp();
 
