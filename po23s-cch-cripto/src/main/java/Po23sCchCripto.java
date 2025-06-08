@@ -7,5 +7,7 @@ public class Po23sCchCripto {
         String resultado = teste.buscaDados("https://www.mercadobitcoin.net/api/ETH/ticker");
 
         System.out.println(resultado);
+
+        System.out.println("Poggers");
     }
 }
