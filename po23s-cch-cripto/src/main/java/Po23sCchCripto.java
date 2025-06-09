@@ -15,7 +15,7 @@ public class Po23sCchCripto {
         System.out.println(resultado);
 
 
-        System.out.println("Continuanto testes malucos");
+        System.out.println("Teste muito crazy");
 
 
 
