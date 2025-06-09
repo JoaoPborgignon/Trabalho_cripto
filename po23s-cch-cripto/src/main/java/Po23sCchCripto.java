@@ -20,12 +20,6 @@ public class Po23sCchCripto {
 
 
 
-
-
-
-
-
-
         System.out.println("Linha de código muito importante");
 
         String filePath = "po23s-cch-cripto/src/main/java/hehehe.wav";
