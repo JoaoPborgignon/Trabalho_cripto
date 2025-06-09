@@ -14,13 +14,11 @@ public class Po23sCchCripto {
 
         System.out.println(resultado);
 
-
         System.out.println("Poggers");
         
         System.out.println("Juninho gameplays");
         
         System.out.println("bruninho da XJ");
-
 
         System.out.println("Teste muito crazy");
 
