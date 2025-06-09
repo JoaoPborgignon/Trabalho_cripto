@@ -7,6 +7,8 @@
 #vscode
 .vscode
 .idea
+nbactions.xml
+maven-status
 
 # BlueJ files
 *.ctxt
