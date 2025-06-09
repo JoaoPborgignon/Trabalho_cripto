@@ -14,11 +14,17 @@ public class Po23sCchCripto {
 
         System.out.println(resultado);
 
+<<<<<<< HEAD
         System.out.println("Poggers");
         
         System.out.println("Juninho gameplays");
         
         System.out.println("bruninho da XJ");
+=======
+
+        System.out.println("Teste muito crazy");
+
+>>>>>>> 4676ee38a13ecc1ed86e38cbeb8fd830ef314978
 
         String filePath = "po23s-cch-cripto/src/main/java/hehehe.wav";
 
