@@ -18,7 +18,7 @@ public class Po23sCchCripto {
         
         System.out.println("Noggers");
         
-        System.out.println("mogged");
+        System.out.println("Pleonasmo");
 
         String filePath = "po23s-cch-cripto/src/main/java/hehehe.wav";
 
