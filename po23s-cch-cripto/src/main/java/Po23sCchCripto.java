@@ -1,5 +1,6 @@
 
 import po23s.http.ClienteHttp;
+import po23s.model.Moeda;
 
 
 public class Po23sCchCripto {
@@ -9,7 +10,8 @@ public class Po23sCchCripto {
         String resultado = teste.buscaDados("https://www.mercadobitcoin.net/api/BTC/ticker");
 
         
-        System.out.println(resultado);
+        Moeda coin = new Moeda(resultado);
 
+        System.out.println(coin.getNomeMoeda());
     }
 }
