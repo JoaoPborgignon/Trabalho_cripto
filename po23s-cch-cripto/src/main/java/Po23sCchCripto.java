@@ -6,17 +6,6 @@ import po23s.view.*;;
 public class Po23sCchCripto {
     public static void main(String[] args) {
 
-        ClienteHttp teste = new ClienteHttp();
-      
-        String resultado = teste.buscaDados("https://www.mercadobitcoin.net/api/tbc/ticker");
-  
-
-        
-        Moeda coin = new Moeda(resultado);
-
-        System.out.println(coin.getNomeMoeda());
-
-
     /* Set the Nimbus look and feel */
     //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
     /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

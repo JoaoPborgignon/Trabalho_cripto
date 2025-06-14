@@ -1,15 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package po23s.view;
 
-/**
- *
- * @author Felipe
- */
+
+import po23s.http.ClienteHttp;
+import po23s.model.*;
+import java.util.ArrayList;
+
+
 public class tela_principal extends javax.swing.JFrame {
    
+    
+    ArrayList<Moeda> listaDeMoedas = new ArrayList<>();
 
     /**
      * Creates new form tela_principal
@@ -218,11 +218,37 @@ public class tela_principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_tickerActionPerformed
 
     private void button_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_addActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button_addActionPerformed
+                ClienteHttp novo = new ClienteHttp();
+                String novoLink = novo.buscaDados(Util.link(txt_ticker.getText()));
+                Moeda proximaMoeda = new Moeda(novoLink);
+                if (Util.isOnArray(proximaMoeda, listaDeMoedas) == false) {
+                    listaDeMoedas.add(proximaMoeda);
+                }
+                for (Moeda moeda : listaDeMoedas) {
+                    System.out.printf("nome:%s e valor:%s\n",moeda.getNomeMoeda() ,moeda.getVendaMoeda());
+                }
+                System.out.println();
+    }//GEN-LAST:event_button_addActionPerformed 
 
     private void button_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_updateActionPerformed
-        // TODO add your handling code here:
+        int tamanho = listaDeMoedas.size();
+        System.out.println("tamanho" + tamanho);
+
+        for (int i = 0; i < tamanho; i++) {
+            ClienteHttp atualizar = new ClienteHttp();
+            String atualizarLink = atualizar.buscaDados(Util.link(listaDeMoedas.get(i).getNomeMoeda()));
+            Moeda temp = new Moeda(atualizarLink);
+            listaDeMoedas.add(temp);
+        }
+        listaDeMoedas.subList(0, tamanho).clear();
+        System.out.println("tamanho" + tamanho);
+        
+        for (Moeda moeda : listaDeMoedas) {
+            System.out.printf("nome:%s e valor:%s\n",moeda.getNomeMoeda() ,moeda.getVendaMoeda());
+        }
+        System.out.println();
+
+
     }//GEN-LAST:event_button_updateActionPerformed
 
     private void button_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_removeActionPerformed
