@@ -215,6 +215,7 @@ public class tela_principal extends javax.swing.JFrame {
 
     private void txt_tickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tickerActionPerformed
         // TODO add your handling code here:
+        jList1.setSelectedIndex(2);
     }//GEN-LAST:event_txt_tickerActionPerformed
 
     private void button_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_addActionPerformed
@@ -231,28 +232,26 @@ public class tela_principal extends javax.swing.JFrame {
     }//GEN-LAST:event_button_addActionPerformed 
 
     private void button_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_updateActionPerformed
+        // guarda o tamanho do array
         int tamanho = listaDeMoedas.size();
-        System.out.println("tamanho" + tamanho);
-
+  
+        // adiciona uma copia do array, após consultar a api novamente para todas as moedas, no final do array
         for (int i = 0; i < tamanho; i++) {
             ClienteHttp atualizar = new ClienteHttp();
             String atualizarLink = atualizar.buscaDados(Util.link(listaDeMoedas.get(i).getNomeMoeda()));
             Moeda temp = new Moeda(atualizarLink);
             listaDeMoedas.add(temp);
         }
+
+        // remove os elementos iniciais do array, deixando apena os atualizados
         listaDeMoedas.subList(0, tamanho).clear();
-        System.out.println("tamanho" + tamanho);
-        
-        for (Moeda moeda : listaDeMoedas) {
-            System.out.printf("nome:%s e valor:%s\n",moeda.getNomeMoeda() ,moeda.getVendaMoeda());
-        }
-        System.out.println();
-
-
+     
+    
     }//GEN-LAST:event_button_updateActionPerformed
 
     private void button_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_removeActionPerformed
-        // TODO add your handling code here:
+        // 
+        
     }//GEN-LAST:event_button_removeActionPerformed
 
     /**

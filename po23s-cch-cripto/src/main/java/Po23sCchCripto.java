@@ -1,6 +1,5 @@
 
-import po23s.http.ClienteHttp;
-import po23s.model.Moeda;
+
 import po23s.view.*;;
 
 public class Po23sCchCripto {
