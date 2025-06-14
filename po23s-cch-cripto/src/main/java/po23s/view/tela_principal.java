@@ -58,7 +58,7 @@ public class tela_principal extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jList3);
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Esssa é a 1" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -102,10 +102,15 @@ public class tela_principal extends javax.swing.JFrame {
             }
         });
 
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1Selection(evt);
+            }
+        });
         jList_ticker.setBackground(new java.awt.Color(178, 178, 178));
         jList_ticker.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jList_ticker.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "J list ticker" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -220,7 +225,6 @@ public class tela_principal extends javax.swing.JFrame {
 
     private void txt_tickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tickerActionPerformed
         // TODO add your handling code here:
-        jList1.setSelectedIndex(2);
     }//GEN-LAST:event_txt_tickerActionPerformed
 
     private void button_addActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -263,6 +267,13 @@ public class tela_principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
+    private void jList1Selection(javax.swing.event.ListSelectionEvent evt){
+        if (!evt.getValueIsAdjusting()) {
+            String selecionado = jList1.getSelectedValue();
+            System.out.println("Item selecionado: " + selecionado);
+        }
+    }
+   
     /**
      * @param args the command line arguments
      */
