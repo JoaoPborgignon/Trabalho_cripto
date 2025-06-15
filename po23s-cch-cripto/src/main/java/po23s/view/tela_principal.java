@@ -53,11 +53,6 @@ public class tela_principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(27, 27, 27));
 
-        txt_ticker.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_tickerActionPerformed(evt);
-            }
-        });
 
         button_add.setBackground(new java.awt.Color(255, 163, 26));
         button_add.setText("Adicionar");
@@ -147,11 +142,6 @@ public class tela_principal extends javax.swing.JFrame {
         jTextField4.setForeground(new java.awt.Color(255, 163, 26));
         jTextField4.setText("      Ticker");
         jTextField4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, null, null));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -213,10 +203,6 @@ public class tela_principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_tickerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tickerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_tickerActionPerformed
-
     private void button_addActionPerformed(java.awt.event.ActionEvent evt) {                                           
                 ClienteHttp novo = new ClienteHttp();
                 String novoLink = novo.buscaDados(Util.link(txt_ticker.getText()));
@@ -267,9 +253,6 @@ public class tela_principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_button_removeActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void selectLinha(javax.swing.event.ListSelectionEvent evt, String nome) {
         JList<?> lista = (JList<?>) evt.getSource();
