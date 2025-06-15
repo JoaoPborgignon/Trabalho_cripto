@@ -5,15 +5,21 @@ import po23s.http.ClienteHttp;
 import po23s.model.*;
 import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+
 
 public class tela_principal extends javax.swing.JFrame {
    
-    
+
     ArrayList<Moeda> listaDeMoedas = new ArrayList<>();
 
-    /**
-     * Creates new form tela_principal
-     */
+    DefaultListModel<String> lista_ticker = new DefaultListModel<>();
+    DefaultListModel<String> lista_venda = new DefaultListModel<>();
+    DefaultListModel<String> lista_compra = new DefaultListModel<>();
+    
+
+ 
     public tela_principal() {
         initComponents();
         getContentPane().setBackground(new java.awt.Color(27, 27, 27));
@@ -27,13 +33,6 @@ public class tela_principal extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
         txt_ticker = new javax.swing.JTextField();
         button_add = new javax.swing.JButton();
         button_update = new javax.swing.JButton();
@@ -50,21 +49,6 @@ public class tela_principal extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jTextField4 = new javax.swing.JTextField();
 
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane3.setViewportView(jList3);
-
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Esssa é a 1" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
-        jScrollPane6.setViewportView(jTree1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(27, 27, 27));
@@ -102,56 +86,62 @@ public class tela_principal extends javax.swing.JFrame {
             }
         });
 
-        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        jList_ticker.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jList1Selection(evt);
+                selectLinha(evt, "ticker");
             }
         });
+        jList_venda.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                selectLinha(evt, "venda");
+            }
+        });
+        jList_compra.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                selectLinha(evt, "compra");
+            }
+        });
+        
+        //lista do ticker
         jList_ticker.setBackground(new java.awt.Color(178, 178, 178));
         jList_ticker.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jList_ticker.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "J list ticker" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        jList_ticker.setModel(lista_ticker);
         jScrollPane2.setViewportView(jList_ticker);
 
+        // lista do venda
         jList_venda.setBackground(new java.awt.Color(178, 178, 178));
         jList_venda.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jList_venda.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        jList_venda.setModel(lista_venda);
         jScrollPane4.setViewportView(jList_venda);
 
+        // lista do compra
         jList_compra.setBackground(new java.awt.Color(178, 178, 178));
         jList_compra.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jList_compra.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        jList_compra.setModel(lista_compra);
         jScrollPane5.setViewportView(jList_compra);
 
+        // texto do ticker
         jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(102, 102, 102));
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setText("Ticker");
         jTextField1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        // texto do compra
         jTextField2.setEditable(false);
         jTextField2.setBackground(new java.awt.Color(102, 102, 102));
         jTextField2.setForeground(new java.awt.Color(255, 255, 255));
         jTextField2.setText("Compra");
         jTextField2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        // texto do venda
         jTextField3.setEditable(false);
         jTextField3.setBackground(new java.awt.Color(102, 102, 102));
         jTextField3.setForeground(new java.awt.Color(255, 255, 255));
         jTextField3.setText("Venda");
         jTextField3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        // texto no topo do ticker, que indica o nome da moeda
         jTextField4.setEditable(false);
         jTextField4.setBackground(new java.awt.Color(27, 27, 27));
         jTextField4.setForeground(new java.awt.Color(255, 163, 26));
@@ -233,11 +223,8 @@ public class tela_principal extends javax.swing.JFrame {
                 Moeda proximaMoeda = new Moeda(novoLink);
                 if (Util.isOnArray(proximaMoeda, listaDeMoedas) == false) {
                     listaDeMoedas.add(proximaMoeda);
+                    addMoedaTolista(proximaMoeda);
                 }
-                for (Moeda moeda : listaDeMoedas) {
-                    System.out.printf("nome:%s e valor:%s\n",moeda.getNomeMoeda() ,moeda.getVendaMoeda());
-                }
-                System.out.println();
     }                                           
 
     private void button_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_updateActionPerformed
@@ -254,12 +241,29 @@ public class tela_principal extends javax.swing.JFrame {
 
         // remove os elementos iniciais do array, deixando apena os atualizados
         listaDeMoedas.subList(0, tamanho).clear();
-     
-    
+
+        // apaga lista
+        lista_ticker.clear();
+        lista_venda.clear();
+        lista_compra.clear();
+        
+        for (int i = 0; i < tamanho; i++) {
+            addMoedaTolista(listaDeMoedas.get(i));
+        }
     }//GEN-LAST:event_button_updateActionPerformed
 
     private void button_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_removeActionPerformed
-        // 
+        int idxTicker = jList_ticker.getSelectedIndex();
+        int idxVenda = jList_venda.getSelectedIndex();
+        int idxCompra = jList_compra.getSelectedIndex();
+
+        if (idxTicker >=0 && idxVenda >=0 && idxCompra >= 0) {
+            lista_ticker.removeElementAt(idxTicker);
+            lista_venda.removeElementAt(idxVenda);
+            lista_compra.removeElementAt(idxCompra);
+            
+        }
+     
         
     }//GEN-LAST:event_button_removeActionPerformed
 
@@ -267,12 +271,31 @@ public class tela_principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
-    private void jList1Selection(javax.swing.event.ListSelectionEvent evt){
-        if (!evt.getValueIsAdjusting()) {
-            String selecionado = jList1.getSelectedValue();
-            System.out.println("Item selecionado: " + selecionado);
+    private void selectLinha(javax.swing.event.ListSelectionEvent evt, String nome) {
+        JList<?> lista = (JList<?>) evt.getSource();
+        int index = lista.getSelectedIndex();
+
+        if (nome == "ticker") {
+           jList_venda.setSelectedIndex(index);
+           jList_compra.setSelectedIndex(index);
+        }
+        if (nome == "venda") {
+            jList_ticker.setSelectedIndex(index);
+            jList_compra.setSelectedIndex(index);
+        }
+        if (nome == "compra") {
+        jList_ticker.setSelectedIndex(index);
+           jList_venda.setSelectedIndex(index);
+
         }
     }
+    
+    private void addMoedaTolista(Moeda coin){
+        lista_ticker.addElement(coin.getNomeMoeda());
+        lista_compra.addElement(coin.getCompraMoeda());
+        lista_venda.addElement(coin.getVendaMoeda());
+    }
+
    
     /**
      * @param args the command line arguments
@@ -282,23 +305,21 @@ public class tela_principal extends javax.swing.JFrame {
     private javax.swing.JButton button_add;
     private javax.swing.JButton button_remove;
     private javax.swing.JButton button_update;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList3;
+
+
     private javax.swing.JList<String> jList_compra;
     private javax.swing.JList<String> jList_ticker;
     private javax.swing.JList<String> jList_venda;
-    private javax.swing.JScrollPane jScrollPane1;
+
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
+
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTree jTree1;
     private javax.swing.JTextField txt_ticker;
     // End of variables declaration//GEN-END:variables
 }
