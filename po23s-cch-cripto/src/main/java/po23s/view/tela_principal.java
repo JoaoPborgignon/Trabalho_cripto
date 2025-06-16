@@ -247,9 +247,9 @@ public class tela_principal extends javax.swing.JFrame {
             lista_ticker.removeElementAt(idxTicker);
             lista_venda.removeElementAt(idxVenda);
             lista_compra.removeElementAt(idxCompra);
-            
+            listaDeMoedas.remove(idxCompra);
         }
-     
+       
         
     }//GEN-LAST:event_button_removeActionPerformed
 
