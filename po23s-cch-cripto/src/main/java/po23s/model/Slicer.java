@@ -14,8 +14,8 @@ public class Slicer {
     static public String JsonGetNome(String json){
         JSONObject cortar = Jsoncovert(json);
         String parte  = cortar.getString("pair");
-
-        String cortado = parte.substring(3, 6);
+        int tam = parte.length()-3;
+        String cortado = parte.substring(3, 3+tam);
 
         return cortado;
 

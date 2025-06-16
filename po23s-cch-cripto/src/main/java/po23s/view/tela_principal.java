@@ -207,9 +207,14 @@ public class tela_principal extends javax.swing.JFrame {
                 ClienteHttp novo = new ClienteHttp();
                 String novoLink = novo.buscaDados(Util.link(txt_ticker.getText()));
                 Moeda proximaMoeda = new Moeda(novoLink);
+
                 if (Util.isOnArray(proximaMoeda, listaDeMoedas) == false) {
                     listaDeMoedas.add(proximaMoeda);
                     addMoedaTolista(proximaMoeda);
+                }
+                for (Moeda moeda : listaDeMoedas) {
+                    System.out.println(moeda.getNomeMoeda());
+                    
                 }
     }                                           
 
