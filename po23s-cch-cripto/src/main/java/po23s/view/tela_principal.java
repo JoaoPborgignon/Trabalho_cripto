@@ -212,16 +212,13 @@ public class tela_principal extends javax.swing.JFrame {
                     listaDeMoedas.add(proximaMoeda);
                     addMoedaTolista(proximaMoeda);
                 }
-                for (Moeda moeda : listaDeMoedas) {
-                    System.out.println(moeda.getNomeMoeda());
-                    
-                }
+                txt_ticker.setText("");
     }                                           
 
     private void button_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_updateActionPerformed
         // guarda o tamanho do array
         int tamanho = listaDeMoedas.size();
-  
+
         // adiciona uma copia do array, após consultar a api novamente para todas as moedas, no final do array
         for (int i = 0; i < tamanho; i++) {
             ClienteHttp atualizar = new ClienteHttp();
@@ -241,6 +238,8 @@ public class tela_principal extends javax.swing.JFrame {
         for (int i = 0; i < tamanho; i++) {
             addMoedaTolista(listaDeMoedas.get(i));
         }
+
+
     }//GEN-LAST:event_button_updateActionPerformed
 
     private void button_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_removeActionPerformed
@@ -284,11 +283,7 @@ public class tela_principal extends javax.swing.JFrame {
         lista_venda.addElement(coin.getVendaMoeda());
     }
 
-   
-    /**
-     * @param args the command line arguments
-     */
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button_add;
     private javax.swing.JButton button_remove;
