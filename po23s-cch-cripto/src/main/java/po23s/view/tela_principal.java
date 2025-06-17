@@ -23,6 +23,12 @@ public class tela_principal extends javax.swing.JFrame {
     public tela_principal() {
         initComponents();
         getContentPane().setBackground(new java.awt.Color(27, 27, 27));
+        
+    }
+
+    public void criar_popup(){
+        popup_atualizar popup = new popup_atualizar(this, false);
+        popup.setVisible(true);
     }
 
     /**
@@ -53,6 +59,7 @@ public class tela_principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(27, 27, 27));
 
+        
 
         button_add.setBackground(new java.awt.Color(255, 163, 26));
         button_add.setText("Adicionar");
@@ -238,6 +245,9 @@ public class tela_principal extends javax.swing.JFrame {
         for (int i = 0; i < tamanho; i++) {
             addMoedaTolista(listaDeMoedas.get(i));
         }
+        
+        criar_popup();
+
 
 
     }//GEN-LAST:event_button_updateActionPerformed
@@ -252,6 +262,9 @@ public class tela_principal extends javax.swing.JFrame {
             lista_venda.removeElementAt(idxVenda);
             lista_compra.removeElementAt(idxCompra);
             listaDeMoedas.remove(idxCompra);
+        }else{
+            internal_frame_remover tela = new internal_frame_remover();
+            tela.setVisible(true);
         }
        
         
