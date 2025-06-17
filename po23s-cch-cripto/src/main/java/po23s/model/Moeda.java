@@ -8,12 +8,25 @@ import java.awt.Frame;
 public class Moeda {
     private String nomeMoeda, compraMoeda, vendaMoeda;
 
-    public Moeda(String resultado, Frame parent){
-        nomeMoeda = JsonGetNome(resultado, parent);
-        compraMoeda = JsonGetCompra(resultado, parent);
-        vendaMoeda = JsonGetVenda(resultado, parent);
+    public Moeda(String resultado, Frame parent) throws Exception{
+        if (JsonGetNome(resultado, parent).equals("Erro")) {
+            throw new Exception("Erro");
+        }else{
+            nomeMoeda = JsonGetNome(resultado, parent);
+        }
+        if (JsonGetCompra(resultado, parent).equals("Erro")) {
+            throw new Exception("Erro");
+        }else{
+            compraMoeda = JsonGetCompra(resultado, parent);
+        }
+        if (JsonGetVenda(resultado, parent).equals("Erro")) {
+            throw new Exception("Erro");
+        }else{
+            vendaMoeda = JsonGetVenda(resultado, parent);
+        }
+        
     }
-    
+
     public String getNomeMoeda() {
         return nomeMoeda;
     }

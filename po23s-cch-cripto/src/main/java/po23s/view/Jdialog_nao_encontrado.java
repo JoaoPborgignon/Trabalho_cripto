@@ -48,13 +48,6 @@ public class Jdialog_nao_encontrado extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         setLocationRelativeTo(parent); // centraliza na janela principal
-    
-        new java.util.Timer().schedule(new java.util.TimerTask() {
-            @Override
-            public void run() {
-                dispose(); // Fecha o JDialog após 4 segundos
-            }
-        }, 1000);
     }
     
 

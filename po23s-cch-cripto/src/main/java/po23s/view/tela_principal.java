@@ -201,14 +201,22 @@ public class tela_principal extends javax.swing.JFrame {
     private void button_addActionPerformed(java.awt.event.ActionEvent evt) {                                           
                 ClienteHttp novo = new ClienteHttp();
                 String novoLink = novo.buscaDados(Util.link(txt_ticker.getText()));
-                Moeda proximaMoeda = new Moeda(novoLink, this);
+                try {
+                    Moeda proximaMoeda = new Moeda(novoLink, this);
+
+                    if (Util.isOnArray(proximaMoeda, listaDeMoedas) == false) {
+                        listaDeMoedas.add(proximaMoeda);
+                        addMoedaTolista(proximaMoeda);
+                    }
+                    txt_ticker.setText("");
+                } catch (Exception e) {
+                    txt_ticker.setText("");
+                    Jdialog_nao_encontrado nao_encontrado = new Jdialog_nao_encontrado(this, true);
+                    nao_encontrado.setVisible(true);
+                }
               
 
-                if (Util.isOnArray(proximaMoeda, listaDeMoedas) == false) {
-                    listaDeMoedas.add(proximaMoeda);
-                    addMoedaTolista(proximaMoeda);
-                }
-                txt_ticker.setText("");
+               
     }                                           
 
     private void button_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_updateActionPerformed
@@ -219,8 +227,16 @@ public class tela_principal extends javax.swing.JFrame {
         for (int i = 0; i < tamanho; i++) {
             ClienteHttp atualizar = new ClienteHttp();
             String atualizarLink = atualizar.buscaDados(Util.link(listaDeMoedas.get(i).getNomeMoeda()));
-            Moeda temp = new Moeda(atualizarLink, this);
-            listaDeMoedas.add(temp);
+            try {
+                Moeda temp = new Moeda(atualizarLink, this);
+                listaDeMoedas.add(temp);
+            } catch (Exception e) {
+                txt_ticker.setText("");
+
+                Jdialog_nao_encontrado nao_encontrado = new Jdialog_nao_encontrado(this, true);
+                nao_encontrado.setVisible(true);
+            }
+            
         }
 
         // remove os elementos iniciais do array, deixando apena os atualizados
@@ -251,8 +267,8 @@ public class tela_principal extends javax.swing.JFrame {
             lista_compra.removeElementAt(idxCompra);
             listaDeMoedas.remove(idxCompra);
         }else{
-          Jdialog_remover teste = new Jdialog_remover(this, true);
-          teste.setVisible(true);
+          Jdialog_remover dJdialog_remover = new Jdialog_remover(this, true);
+          dJdialog_remover.setVisible(true);
         }
        
         
