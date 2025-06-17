@@ -1,16 +1,19 @@
+// Classe Moeda
 package po23s.model;
 
 import static po23s.model.Slicer.*;
 
-public class Moeda {
+import java.awt.Frame;
 
+public class Moeda {
     private String nomeMoeda, compraMoeda, vendaMoeda;
 
-    public Moeda(String resultado){
-        nomeMoeda = JsonGetNome(resultado);
-        compraMoeda = JsonGetCompra(resultado);
-        vendaMoeda = JsonGetVenda(resultado);
+    public Moeda(String resultado, Frame parent){
+        nomeMoeda = JsonGetNome(resultado, parent);
+        compraMoeda = JsonGetCompra(resultado, parent);
+        vendaMoeda = JsonGetVenda(resultado, parent);
     }
+    
     public String getNomeMoeda() {
         return nomeMoeda;
     }
