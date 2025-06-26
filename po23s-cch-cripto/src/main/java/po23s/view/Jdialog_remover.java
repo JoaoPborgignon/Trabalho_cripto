@@ -58,5 +58,4 @@ public class Jdialog_remover extends javax.swing.JDialog {
     }
     
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton jButton2;
 }
