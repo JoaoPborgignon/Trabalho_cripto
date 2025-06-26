@@ -24,7 +24,7 @@ public class Jdialog_caracteres extends javax.swing.JDialog {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("É nescessario no minimo 2 caracteres");
+        jLabel1.setText("É necessário no mínimo 2 caracteres");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

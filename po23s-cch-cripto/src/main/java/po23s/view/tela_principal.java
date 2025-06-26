@@ -4,29 +4,29 @@ package po23s.view;
 import po23s.http.ClienteHttp;
 import po23s.model.*;
 import java.util.ArrayList;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
-
+// classe principal da interface, herda da JFrame
 public class tela_principal extends javax.swing.JFrame {
    
-
+    // array que guarda objetos Moeda (com nome, valor de compra e venda)
     ArrayList<Moeda> listaDeMoedas = new ArrayList<>();
 
+    // listas gráficas (uma pra cada campo da moeda)
     DefaultListModel<String> lista_ticker = new DefaultListModel<>();
     DefaultListModel<String> lista_venda = new DefaultListModel<>();
     DefaultListModel<String> lista_compra = new DefaultListModel<>();
-    
 
- 
+    // construtor
     public tela_principal() {
-        initComponents();
-        getContentPane().setBackground(new java.awt.Color(27, 27, 27));
-        
+        initComponents(); // inicializa todos os componentes da interface
+        getContentPane().setBackground(new java.awt.Color(27, 27, 27)); // define cor de fundo da janela
     }
 
     private void initComponents() {
+
+        //inicia tudo
         txt_ticker = new javax.swing.JTextField();
         button_add = new javax.swing.JButton();
         button_update = new javax.swing.JButton();
@@ -43,15 +43,16 @@ public class tela_principal extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jTextField4 = new javax.swing.JTextField();
 
-
+        // define o comportamento padrão ao fechar a janela (encerra o programa)
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(27, 27, 27));
 
-        
 
         button_add.setBackground(new java.awt.Color(255, 163, 26));
         button_add.setText("Adicionar");
         button_add.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+       
+        // define as ações do add ao sere clicado
         button_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_addActionPerformed(evt);
@@ -61,6 +62,8 @@ public class tela_principal extends javax.swing.JFrame {
         button_update.setBackground(new java.awt.Color(255, 163, 26));
         button_update.setText("Atualizar");
         button_update.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        // define as ações do update ao sere clicado
         button_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_updateActionPerformed(evt);
@@ -70,6 +73,8 @@ public class tela_principal extends javax.swing.JFrame {
         button_remove.setBackground(new java.awt.Color(255, 163, 26));
         button_remove.setText("Remover");
         button_remove.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        // define as ações do remove ao sere clicado
         button_remove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_removeActionPerformed(evt);
@@ -198,37 +203,38 @@ public class tela_principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void button_addActionPerformed(java.awt.event.ActionEvent evt) {     
-            // primeiro checa se tem pelo menos 2 caracteres
-            if (txt_ticker.getText().length() < 2) {
-                    Jdialog_caracteres caracteres = new Jdialog_caracteres(this, false);
-                    caracteres.setVisible(true);
-                    
-                }else{
-                    // tendo pelo menos 2 caracteres, ele busca na api
-                    ClienteHttp novo = new ClienteHttp();
-                    String novoLink = novo.buscaDados(Util.link(txt_ticker.getText()));
-                    
-                    // tenta criar uma moeda com a resposta da api
-                    try {
-                        Moeda proximaMoeda = new Moeda(novoLink, this);
-                        if (Util.isOnArray(proximaMoeda, listaDeMoedas) == false) {
-                            listaDeMoedas.add(proximaMoeda);
-                            addMoedaTolista(proximaMoeda);
-                        }
-                        txt_ticker.setText("");
-                    } catch (Exception e) {
-                        // isso acontence quando não existe uma moeda com o ticker, então é mostrado um jdialog avisando o usuario
-                        txt_ticker.setText("");
-                        Jdialog_nao_encontrado nao_encontrado = new Jdialog_nao_encontrado(this, true);
-                        nao_encontrado.setVisible(true);
-                    }
-                }                                      
-                
-              
+    private void button_addActionPerformed(java.awt.event.ActionEvent evt) {
+        // primeiro checa se tem pelo menos 2 caracteres
+        if (txt_ticker.getText().length() < 2) {
+            // abre uma janela de erro se o input for muito curto
+            Jdialog_caracteres caracteres = new Jdialog_caracteres(this, false);
+            caracteres.setVisible(true);
+        } else {
+            // cria objeto http e busca os dados da moeda digitada
+            ClienteHttp novo = new ClienteHttp();
+            String novoLink = novo.buscaDados(Util.link(txt_ticker.getText()));
 
-               
-    }                                           
+            try {
+                // tenta construir um objeto moeda com os dados recebidos
+                Moeda proximaMoeda = new Moeda(novoLink, this);
+
+                // só adiciona a moeda se ela ainda não estiver na lista
+                if (Util.isOnArray(proximaMoeda, listaDeMoedas) == false) {
+                    listaDeMoedas.add(proximaMoeda); // adiciona ao ArrayList
+                    addMoedaTolista(proximaMoeda);   // adiciona às listas visuais
+                }
+
+                // limpa o campo de texto depois de adicionar
+                txt_ticker.setText("");
+            } catch (Exception e) {
+                // se não conseguir criar a moeda, mostra um jdialog avisando o usuario
+                txt_ticker.setText("");
+                Jdialog_nao_encontrado nao_encontrado = new Jdialog_nao_encontrado(this, true);
+                nao_encontrado.setVisible(true);
+            }
+    }
+}
+
 
     private void button_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_updateActionPerformed
         // guarda o tamanho do array

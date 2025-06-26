@@ -27,7 +27,7 @@ public class Jdialog_remover extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("É necessário selecionar uma moeda para remover");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       
