@@ -15,7 +15,7 @@ public class Jdialog_remover extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 163, 26));
@@ -27,11 +27,6 @@ public class Jdialog_remover extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("É necessário selecionar uma moeda para remover");
-        jButton2.setBackground(new java.awt.Color(255, 163, 26));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setText("OK");
-        jButton2.setAlignmentX(1.0F);
-        jButton2.setAlignmentY(1.0F);
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -62,9 +57,6 @@ public class Jdialog_remover extends javax.swing.JDialog {
     
     }
     
-
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton jButton2;
-
-   
 }

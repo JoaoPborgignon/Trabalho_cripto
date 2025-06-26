@@ -198,22 +198,33 @@ public class tela_principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void button_addActionPerformed(java.awt.event.ActionEvent evt) {                                           
-                ClienteHttp novo = new ClienteHttp();
-                String novoLink = novo.buscaDados(Util.link(txt_ticker.getText()));
-                try {
-                    Moeda proximaMoeda = new Moeda(novoLink, this);
-
-                    if (Util.isOnArray(proximaMoeda, listaDeMoedas) == false) {
-                        listaDeMoedas.add(proximaMoeda);
-                        addMoedaTolista(proximaMoeda);
+    private void button_addActionPerformed(java.awt.event.ActionEvent evt) {     
+            // primeiro checa se tem pelo menos 2 caracteres
+            if (txt_ticker.getText().length() < 2) {
+                    Jdialog_caracteres caracteres = new Jdialog_caracteres(this, false);
+                    caracteres.setVisible(true);
+                    
+                }else{
+                    // tendo pelo menos 2 caracteres, ele busca na api
+                    ClienteHttp novo = new ClienteHttp();
+                    String novoLink = novo.buscaDados(Util.link(txt_ticker.getText()));
+                    
+                    // tenta criar uma moeda com a resposta da api
+                    try {
+                        Moeda proximaMoeda = new Moeda(novoLink, this);
+                        if (Util.isOnArray(proximaMoeda, listaDeMoedas) == false) {
+                            listaDeMoedas.add(proximaMoeda);
+                            addMoedaTolista(proximaMoeda);
+                        }
+                        txt_ticker.setText("");
+                    } catch (Exception e) {
+                        // isso acontence quando não existe uma moeda com o ticker, então é mostrado um jdialog avisando o usuario
+                        txt_ticker.setText("");
+                        Jdialog_nao_encontrado nao_encontrado = new Jdialog_nao_encontrado(this, true);
+                        nao_encontrado.setVisible(true);
                     }
-                    txt_ticker.setText("");
-                } catch (Exception e) {
-                    txt_ticker.setText("");
-                    Jdialog_nao_encontrado nao_encontrado = new Jdialog_nao_encontrado(this, true);
-                    nao_encontrado.setVisible(true);
-                }
+                }                                      
+                
               
 
                
