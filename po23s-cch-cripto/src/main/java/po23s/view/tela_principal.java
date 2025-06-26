@@ -236,89 +236,98 @@ public class tela_principal extends javax.swing.JFrame {
 }
 
 
-    private void button_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_updateActionPerformed
-        // guarda o tamanho do array
+    private void button_updateActionPerformed(java.awt.event.ActionEvent evt) {
+        // guarda o tamanho atual da lista de moedas
         int tamanho = listaDeMoedas.size();
 
-        // adiciona uma copia do array, após consultar a api novamente para todas as moedas, no final do array
+        // para cada moeda já presente, faz uma nova requisição para atualizar
         for (int i = 0; i < tamanho; i++) {
             ClienteHttp atualizar = new ClienteHttp();
             String atualizarLink = atualizar.buscaDados(Util.link(listaDeMoedas.get(i).getNomeMoeda()));
+
             try {
                 Moeda temp = new Moeda(atualizarLink, this);
-                listaDeMoedas.add(temp);
+                listaDeMoedas.add(temp); // adiciona a nova versão da moeda
             } catch (Exception e) {
+                // mostra dialogo se algum ticker não for encontrado
                 txt_ticker.setText("");
-
                 Jdialog_nao_encontrado nao_encontrado = new Jdialog_nao_encontrado(this, true);
                 nao_encontrado.setVisible(true);
             }
-            
         }
 
-        // remove os elementos iniciais do array, deixando apena os atualizados
+        // remove as moedas antigas, mantendo só as atualizadas
         listaDeMoedas.subList(0, tamanho).clear();
 
-        // apaga lista
+        // limpa a interface visual (listas)
         lista_ticker.clear();
         lista_venda.clear();
         lista_compra.clear();
-        
+
+        // repopula a interface com as moedas atualizadas
         for (int i = 0; i < tamanho; i++) {
             addMoedaTolista(listaDeMoedas.get(i));
         }
-        
+
+        // mostra popup de confirmação de atualização
         popup_atualizar popup = new popup_atualizar(this, false);
         popup.setVisible(true);
+    }
 
-    }//GEN-LAST:event_button_updateActionPerformed
 
-    private void button_removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_removeActionPerformed
+    private void button_removeActionPerformed(java.awt.event.ActionEvent evt) {
+        // pega os índices selecionados nas 3 listas
         int idxTicker = jList_ticker.getSelectedIndex();
         int idxVenda = jList_venda.getSelectedIndex();
         int idxCompra = jList_compra.getSelectedIndex();
 
-        if (idxTicker >=0 && idxVenda >=0 && idxCompra >= 0) {
+        // se todos estão selecionados corretamente
+        if (idxTicker >= 0 && idxVenda >= 0 && idxCompra >= 0) {
+            // remove os elementos visualmente
             lista_ticker.removeElementAt(idxTicker);
             lista_venda.removeElementAt(idxVenda);
             lista_compra.removeElementAt(idxCompra);
+
+            // remove o objeto do ArrayList
             listaDeMoedas.remove(idxCompra);
-        }else{
-          Jdialog_remover dJdialog_remover = new Jdialog_remover(this, true);
-          dJdialog_remover.setVisible(true);
+        } else {
+            // se nada estiver selecionado, mostra uma janela de erro
+            Jdialog_remover dJdialog_remover = new Jdialog_remover(this, true);
+            dJdialog_remover.setVisible(true);
         }
-       
-        
-    }//GEN-LAST:event_button_removeActionPerformed
+    }
+
 
 
     private void selectLinha(javax.swing.event.ListSelectionEvent evt, String nome) {
+        // pega a lista que disparou o evento
         JList<?> lista = (JList<?>) evt.getSource();
         int index = lista.getSelectedIndex();
 
+        // força a mesma seleção nas outras listas
         if (nome == "ticker") {
-           jList_venda.setSelectedIndex(index);
-           jList_compra.setSelectedIndex(index);
+            jList_venda.setSelectedIndex(index);
+            jList_compra.setSelectedIndex(index);
         }
         if (nome == "venda") {
             jList_ticker.setSelectedIndex(index);
             jList_compra.setSelectedIndex(index);
         }
         if (nome == "compra") {
-        jList_ticker.setSelectedIndex(index);
-           jList_venda.setSelectedIndex(index);
-
+            jList_ticker.setSelectedIndex(index);
+            jList_venda.setSelectedIndex(index);
         }
     }
+
     
-    private void addMoedaTolista(Moeda coin){
-        lista_ticker.addElement(coin.getNomeMoeda());
-        lista_compra.addElement(coin.getCompraMoeda());
-        lista_venda.addElement(coin.getVendaMoeda());
-    }
+   private void addMoedaTolista(Moeda coin){
+    lista_ticker.addElement(coin.getNomeMoeda());   // nome do ticker 
+    lista_compra.addElement(coin.getCompraMoeda()); // valor de compra
+    lista_venda.addElement(coin.getVendaMoeda());   // valor de venda
+}
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // variaveis, gerado pelo netbeans
     private javax.swing.JButton button_add;
     private javax.swing.JButton button_remove;
     private javax.swing.JButton button_update;
@@ -338,5 +347,4 @@ public class tela_principal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField txt_ticker;
-    // End of variables declaration//GEN-END:variables
 }
